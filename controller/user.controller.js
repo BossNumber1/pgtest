@@ -6,8 +6,10 @@ class UserController {
       const {name, surname} = req.body;
       const newPerson = await db.query(`INSERT INTO person (name, surname) values ($1, $2) RETURNING *`, [name, surname]);
       
+      console.log("Attention!-------")
       res.json(newPerson.rows[0]);
     } catch (e) {
+      console.log("Attention! Your error =", e)
       res.send("Attention! Your error =", e)
     }
   }
